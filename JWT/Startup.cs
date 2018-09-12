@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentNHibernate.Cfg;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,6 +50,19 @@ namespace JWT
                       .AllowAnyHeader()
                       .AllowCredentials()
                 .Build());
+            });
+
+            services.AddSingleton<NHibernate.ISessionFactory>(factory => 
+            {
+                return Fluently.Configure()
+                               .Database(()=>
+                               {
+                                   return FluentNHibernate.Cfg.Db.MsSqlConfiguration
+                                        .MsSql2012
+                                        .ShowSql()
+                                        .ConnectionString("");
+                               })
+                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model>)
             });
 
             services.AddMvc();
