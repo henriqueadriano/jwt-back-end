@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using NHibernate;
 
@@ -54,20 +51,9 @@ namespace JWT.Controllers
         {
             var consoles = _session.QueryOver<model.Console>().List();
 
-            /*ICollection<FoodItem> foodItems = _foodRepository.GetRandomMeal();
-
-            IEnumerable<FoodItemDto> dtos = foodItems
-                .Select(x => Mapper.Map<FoodItemDto>(x));
-
-            var links = new List<LinkDto>();
-
-            // self 
-            links.Add(new LinkDto(_urlHelper.Link(nameof(GetRandomMeal), null), "self", "GET"));
-            */
             return Ok(new
             {
                 value = consoles,
-                //links = links
             });
         }
     }
