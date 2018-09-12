@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentNHibernate.Cfg;
+using JWT.model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using NHibernate;
 
 namespace JWT
 {
@@ -52,18 +54,26 @@ namespace JWT
                 .Build());
             });
 
-            services.AddSingleton<NHibernate.ISessionFactory>(factory => 
+            services.AddSingleton<ISessionFactory>(factory => 
             {
                 return Fluently.Configure()
-                               .Database(()=>
+                               .Database(() =>
                                {
                                    return FluentNHibernate.Cfg.Db.MsSqlConfiguration
                                         .MsSql2012
                                         .ShowSql()
-                                        .ConnectionString("");
+                                        .ConnectionString("Server=.\\SQLEXPRESS; Database=RetroDB; Integrated Security=SSPI;");
                                })
-                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model>)
+                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ConsoleMap>())
+                               .BuildSessionFactory();
             });
+
+            services.AddScoped<ISession>(factory =>
+                 factory
+                .GetServices<ISessionFactory>()
+                .First()
+                .OpenSession()
+            );
 
             services.AddMvc();
         }
