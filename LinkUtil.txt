@@ -1,0 +1,15 @@
+nhibernate samples
+
+https://www.dotnetjalps.com/2014/07/fluent-nhibernate-asp-net-mvc-crud.html
+
+https://www.lambda3.com.br/2018/04/usando-fluentnhibernate-e-fluentmigrator-com-net-core/
+
+https://www.codeproject.com/Tips/1243873/Work-with-Fluent-NHibernate-in-Core
+
+https://github.com/dotnetjalps/FluentNhiberNateMVC
+
+https://www.codeproject.com/Articles/1178251/NHibernate-Introduction-configuration-CRUD-with-MV
+
+https://www.codeproject.com/Articles/1130939/Master-Chef-Part-ASP-NET-Core-MVC-with-Fluent-NHib
+
+https://stackoverflow.com/questions/47742926/nhibernate-sessionfactory-handled-by-net-core-di
