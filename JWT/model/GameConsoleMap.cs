@@ -2,14 +2,13 @@
 
 namespace JWT.model
 {
-    public class ConsoleMap : ClassMap<Console>
+    public class GameConsoleMap : ClassMap<GameConsole>
     {
-        ConsoleMap()
+        GameConsoleMap()
         {
-            Table("Console");
+            Table("GameConsole");
             Id(x => x.Id);
             Map(x => x.Name);
-            Map(x => x.Description);
             Map(x => x.Year);
         }
     }

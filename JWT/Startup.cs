@@ -57,9 +57,9 @@ namespace JWT
                                    return FluentNHibernate.Cfg.Db.MsSqlConfiguration
                                         .MsSql2012
                                         .ShowSql()
-                                        .ConnectionString("Server=.\\SQLEXPRESS; Database=RetroDB; Integrated Security=SSPI;");
+                                        .ConnectionString(Configuration.GetConnectionString("RetroDB2"));
                                })
-                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ConsoleMap>())
+                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<GameConsoleMap>())
                                .BuildSessionFactory();
             });
 

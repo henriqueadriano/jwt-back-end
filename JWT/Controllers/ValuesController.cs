@@ -49,7 +49,7 @@ namespace JWT.Controllers
         [HttpGet("mytest")]
         public ActionResult MyTest()
         {
-            var consoles = _session.QueryOver<model.Console>().List();
+            var consoles = _session.QueryOver<model.GameConsole>().List();
 
             return Ok(new
             {
